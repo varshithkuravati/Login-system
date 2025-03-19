@@ -1,0 +1,46 @@
+
+
+{% extends 'users/base.html' %}
+
+
+{% block head_title %}Login{% endblock head_title %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+<form action="" method="post">
+
+    {% csrf_token %}
+
+{{ form.email.label_tag }}
+
+<input type="email" name = "email" id="id_email" value = '{{ form.email.value|default:""}}'>
+
+{% if form.email.errors %}
+
+<p>{{ form.email.errors }}</p>
+
+{% endif %}
+
+<br>
+
+{{ form.password.label_tag }}
+
+<input type="password" name="password" id="id_password" value = '{{ form.password.value|default:""}}'>
+
+{% if form.password.errors %}
+
+<p>{{ form.password.errors }}</p>
+
+{% endif %}
+
+
+<button type="submit">Login</button>
+
+
+</form>
+
+<a href="{% url 'users:passwordReset' %}">forget password</a>
+
+{% endblock content %}
